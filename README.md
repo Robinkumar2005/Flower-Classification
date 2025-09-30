@@ -42,6 +42,7 @@ Dandelion	🌿
 Rose	🌹
 Sunflower	🌻
 Tulip	🌷
+
 🛠 Technologies Used
 
 Python – Core programming
@@ -53,3 +54,4 @@ Streamlit – Frontend deployment
 NumPy & Pandas – Data manipulation
 
 Pillow – Image preprocessing
+
