@@ -42,7 +42,6 @@ Dandelion	🌿
 Rose	🌹
 Sunflower	🌻
 Tulip	🌷
-
 🛠 Technologies Used
 
 Python – Core programming
