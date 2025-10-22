@@ -21,21 +21,30 @@ st.markdown(
         background-color: #0E1117;
         color: #FFFFFF;
     }
-    /* Sidebar background */
-    .css-1d391kg {
-        background-color: #1A1D23;
-        color: #FFFFFF;
+
+    /* Sidebar background fully dark, no close button */
+    .css-1d391kg { 
+        background-color: #1A1D23 !important; 
+        color: #FFFFFF; 
+        padding: 10px;
     }
+    .css-1d391kg .stMarkdown {
+        background-color: transparent !important;
+        padding: 0;
+    }
+
     /* Buttons */
     .stButton button, .stDownloadButton button {
         background-color: #2C2F38;
         color: white;
         border-radius: 8px;
     }
+
     /* Markdown headers */
     h1, h2, h3, h4, h5, h6 {
         color: #FFFFFF;
     }
+
     /* Probability bars text */
     div strong {
         color: #FFFFFF;
@@ -45,6 +54,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# --- App title ---
 st.title("🌸 Flower Image Classifier")
 st.markdown("Upload one or more flower images to get predictions with colorful probability bars.")
 
@@ -64,6 +74,7 @@ colors = {
     "sunflower": "#FFA500",   # Orange
     "tulip": "#8A2BE2"         # BlueViolet
 }
+
 # --- Sidebar instructions ---
 st.sidebar.header("Instructions")
 st.sidebar.markdown("""
@@ -71,7 +82,6 @@ st.sidebar.markdown("""
 2. Wait for predictions.  
 3. See predicted flower type with probability breakdown.  
 4. Download the predictions as CSV.
-
 
 **Flower types the model can predict:**  
 - Daisy  
@@ -152,8 +162,4 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
-
-
-
-
 
