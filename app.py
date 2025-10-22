@@ -12,6 +12,39 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- Dark Mode CSS ---
+st.markdown(
+    """
+    <style>
+    /* Main app background */
+    .stApp {
+        background-color: #0E1117;
+        color: #FFFFFF;
+    }
+    /* Sidebar background */
+    .css-1d391kg {
+        background-color: #1A1D23;
+        color: #FFFFFF;
+    }
+    /* Buttons */
+    .stButton button, .stDownloadButton button {
+        background-color: #2C2F38;
+        color: white;
+        border-radius: 8px;
+    }
+    /* Markdown headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #FFFFFF;
+    }
+    /* Probability bars text */
+    div strong {
+        color: #FFFFFF;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("🌸 Flower Image Classifier")
 st.markdown("Upload one or more flower images to get predictions with colorful probability bars.")
 
@@ -112,4 +145,5 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
+
 
