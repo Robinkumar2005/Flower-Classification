@@ -72,6 +72,14 @@ st.sidebar.write("""
 2. Wait for predictions.  
 3. See predicted flower type with probability breakdown.  
 4. Download the predictions as CSV.
+
+
+**Flower types the model can predict:**  
+- Daisy  
+- Dandelion  
+- Rose  
+- Sunflower  
+- Tulip
 """)
 
 # --- File uploader ---
@@ -145,5 +153,6 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
+
 
 
