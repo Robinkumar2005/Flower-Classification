@@ -1,4 +1,4 @@
-# app.py# app.py
+# app.py
 import streamlit as st
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -7,51 +7,50 @@ from PIL import Image
 import pandas as pd
 from io import BytesIO
 
-# --- Page config MUST be at the very top ---
+# --- Page config ---
 st.set_page_config(page_title="🌸 Flower Classifier", layout="wide")
 
-# --- Dark Mode CSS ---
-st.markdown(
-    """
+# --- Dark Mode & Scrollable Sidebar CSS ---
+st.markdown("""
     <style>
     /* Main app background */
     .stApp {
         background-color: #0E1117;
         color: #FFFFFF;
     }
-    /* Sidebar background fully dark */
-    .css-1d391kg { 
-        background-color: #1A1D23 !important; 
-        color: #FFFFFF; 
+
+    /* Sidebar styling */
+    .css-1d391kg {
+        background-color: #1A1D23 !important;
+        color: #FFFFFF;
         padding: 10px;
+        height: calc(100vh - 2rem);
+        overflow-y: auto;
     }
-    .css-1d391kg .stMarkdown {
-        background-color: transparent !important;
-        padding: 0;
-    }
+
     /* Buttons */
     .stButton button, .stDownloadButton button {
         background-color: #2C2F38;
         color: white;
         border-radius: 8px;
     }
+
     /* Markdown headers */
     h1, h2, h3, h4, h5, h6 {
         color: #FFFFFF;
     }
+
     /* Probability bars text */
     div strong {
         color: #FFFFFF;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 # --- App title ---
 st.title("🌸 Flower Image Classifier")
 
-# --- Load model with caching ---
+# --- Load model ---
 @st.cache_resource
 def load_flower_model():
     return load_model("flowers_cnn.keras")
@@ -61,32 +60,29 @@ model = load_flower_model()
 # --- Class names and colors ---
 class_names = ["daisy", "dandelion", "rose", "sunflower", "tulip"]
 colors = {
-    "daisy": "#FFB6C1",       # Light Pink
-    "dandelion": "#FFD700",   # Gold
-    "rose": "#FF6347",         # Tomato Red
-    "sunflower": "#FFA500",   # Orange
-    "tulip": "#8A2BE2"         # BlueViolet
+    "daisy": "#FFB6C1",
+    "dandelion": "#FFD700",
+    "rose": "#FF6347",
+    "sunflower": "#FFA500",
+    "tulip": "#8A2BE2"
 }
 
-# --- Display flower types on main page ---
-st.markdown("**This model can predict the following flowers:**")
-st.write(", ".join([c.capitalize() for c in class_names]))
-st.write("Upload one or more flower images to get predictions with colorful probability bars.")
-
-# --- Sidebar instructions ---
+# --- Sidebar instructions (scrollable) ---
 st.sidebar.header("Instructions")
-st.sidebar.markdown(f"""
+st.sidebar.markdown("""
 1. Upload one or multiple flower images (jpg, jpeg, png).  
 2. Wait for predictions.  
 3. See predicted flower type with probability breakdown.  
 4. Download the predictions as CSV.  
 
 **Flower types the model can predict:**  
-- {class_names[0].capitalize()}  
-- {class_names[1].capitalize()}  
-- {class_names[2].capitalize()}  
-- {class_names[3].capitalize()}  
-- {class_names[4].capitalize()}
+- Daisy  
+- Dandelion  
+- Rose  
+- Sunflower  
+- Tulip  
+
+You can add more instructions here if needed. The sidebar will scroll automatically if the content is too long.
 """)
 
 # --- File uploader ---
@@ -96,7 +92,7 @@ uploaded_files = st.file_uploader(
     accept_multiple_files=True
 )
 
-results = []  # Store results for CSV download
+results = []  # Store results
 
 if uploaded_files:
     for uploaded_file in uploaded_files:
