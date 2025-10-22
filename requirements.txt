@@ -1,8 +1,6 @@
-streamlit==1.28.0
-tensorflow==2.20.0
-# keras can be removed, as it's included in TF
-numpy==1.26.2
-pandas==2.1.0
-Pillow==10.1.0
-scikit-learn==1.3.2
-matplotlib==3.8.0
+streamlit==1.25.0
+numpy==1.26.1 
+tensorflow==2.19.0
+matplotlib==3.7.2
+Pillow==9.5.0
+
