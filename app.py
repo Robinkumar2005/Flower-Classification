@@ -12,10 +12,20 @@ st.set_page_config(page_title="🌸 Flower Classifier", layout="wide")
 # --- App title ---
 st.title("🌸 Flower Image Classifier")
 
-# Display flower types on main page
-st.markdown("**This model can predict the following flowers:**")
+# --- Class names and colors ---
 class_names = ["daisy", "dandelion", "rose", "sunflower", "tulip"]
+colors = {
+    "daisy": "#FFB6C1",
+    "dandelion": "#FFD700",
+    "rose": "#FF6347",
+    "sunflower": "#FFA500",
+    "tulip": "#8A2BE2"
+}
+
+# --- Display flower types on main page ---
+st.markdown("**This model can predict the following flowers:**")
 st.write(", ".join([c.capitalize() for c in class_names]))
+st.write("Upload one or more flower images to get predictions with colorful probability bars.")
 
 # --- Sidebar with scrollable instructions ---
 instructions = f"""
@@ -29,12 +39,11 @@ instructions = f"""
 - {class_names[1].capitalize()}  
 - {class_names[2].capitalize()}  
 - {class_names[3].capitalize()}  
-- {class_names[4].capitalize()}
+- {class_names[4].capitalize()}  
 
-You can add more detailed instructions here. The sidebar will scroll if the content is long.
+You can add more instructions here. The sidebar will scroll if content is long.
 """
 
-# Wrap instructions in a scrollable div
 st.sidebar.markdown(
     f"""
     <div style="height:400px; overflow-y:auto; padding:10px; border:1px solid #ccc;">
@@ -56,16 +65,9 @@ uploaded_files = st.file_uploader(
     "Choose flower images", type=["jpg", "jpeg", "png"], accept_multiple_files=True
 )
 
-colors = {
-    "daisy": "#FFB6C1",
-    "dandelion": "#FFD700",
-    "rose": "#FF6347",
-    "sunflower": "#FFA500",
-    "tulip": "#8A2BE2"
-}
-
 results = []
 
+# --- Process uploaded images ---
 if uploaded_files:
     for uploaded_file in uploaded_files:
         cols = st.columns([1, 2])
@@ -99,11 +101,13 @@ if uploaded_files:
                     unsafe_allow_html=True
                 )
 
+            # Save results for CSV
             result_dict = {"Image": uploaded_file.name, "Predicted": class_names[predicted_class]}
             for i, cname in enumerate(class_names):
                 result_dict[cname] = pred_probs[i]
             results.append(result_dict)
 
+# --- Download CSV ---
 if results:
     df = pd.DataFrame(results)
     csv_buffer = BytesIO()
