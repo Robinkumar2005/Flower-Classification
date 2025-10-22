@@ -66,7 +66,7 @@ colors = {
 }
 # --- Sidebar instructions ---
 st.sidebar.header("Instructions")
-st.sidebar.write("""
+st.sidebar.markdown("""
 1. Upload one or multiple flower images (jpg, jpeg, png).  
 2. Wait for predictions.  
 3. See predicted flower type with probability breakdown.  
@@ -152,6 +152,7 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
+
 
 
 
