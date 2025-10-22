@@ -1,5 +1,8 @@
 # app.py
 import streamlit as st
+
+st.set_page_config(page_title="🌸 Flower Classifier", layout="wide")
+
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
@@ -25,8 +28,7 @@ colors = {
 }
 
 # --- Streamlit UI ---
-st.set_page_config(page_title="🌸 Flower Classifier", layout="wide")
-st.title("🌸 Flower Image Classifier")
+
 st.write("Upload one or more flower images to get predictions with colorful probability bars.")
 
 # Sidebar instructions
@@ -106,3 +108,4 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
+
