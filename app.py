@@ -64,7 +64,6 @@ colors = {
     "sunflower": "#FFA500",   # Orange
     "tulip": "#8A2BE2"         # BlueViolet
 }
-
 # --- Sidebar instructions ---
 st.sidebar.header("Instructions")
 st.sidebar.write("""
@@ -153,6 +152,7 @@ if uploaded_files:
             file_name="flower_predictions.csv",
             mime="text/csv"
         )
+
 
 
 
